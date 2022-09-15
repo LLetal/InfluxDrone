@@ -32,17 +32,21 @@ public class djidatacollect {
     public static Integer flight_time(){
         return(flightController.getState().getFlightTimeInSeconds());
     }
-    public static Integer battery_current(){
-        final Integer[] output = {0};
+    public static Integer battery_current(Integer init_current){
+        final Integer[] output = {init_current};
         KeyManager.getInstance().getValue(Current, new GetCallback() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onSuccess(final @NonNull Object o) {
                 if (o instanceof Integer) {
                     Integer current = (Integer) o;
-                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-                    StrictMode.setThreadPolicy(policy);
-                    output[0] =  current;
+                    if (current ==0){
+                        output[0]=init_current;
+                    }
+                    else {
+                        output[0] = current;
+                        djidatacollect.last_current=current;
+                    }
                 }
 
             }
@@ -53,17 +57,21 @@ public class djidatacollect {
         });
         return(output[0]);
     }
-    public static Integer battery_voltage(){
-        final Integer[] output = {0};
+    public static Integer battery_voltage(Integer init_volt){
+        final Integer[] output = {init_volt};
         KeyManager.getInstance().getValue(Voltage, new GetCallback() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onSuccess(final @NonNull Object o) {
                 if (o instanceof Integer) {
                     Integer voltage = (Integer) o;
-                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-                    StrictMode.setThreadPolicy(policy);
-                    output[0] = voltage;
+                    if (voltage ==0){
+                        output[0]=init_volt;
+                    }
+                    else {
+                        output[0] = voltage;
+                        djidatacollect.last_voltage=voltage;
+                    }
                 }
             }
 
@@ -73,18 +81,22 @@ public class djidatacollect {
         });
         return(output[0]);
     }
-    public static Integer battery_percent(){
-        final Integer[] output = {0};
+    public static Integer battery_percent(Integer init_perc){
+        final Integer[] output = {init_perc};
         KeyManager.getInstance().getValue(Batt_perc, new GetCallback() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onSuccess(final @NonNull Object o) {
                 if (o instanceof Integer) {
                     Integer perc = (Integer) o;
-                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-                    StrictMode.setThreadPolicy(policy);
-                    output[0] = perc;
+                    if (perc ==0) {
+                        output[0]=init_perc;
+                    }
+                    else {
+                        output[0] = perc;
+                        djidatacollect.last_percent=perc;
 
+                    }
                 }
             }
 
@@ -94,4 +106,8 @@ public class djidatacollect {
         });
         return(output[0]);
     }
+    static Integer last_voltage = 0;
+    static Integer last_current = 0;
+    static Integer last_percent = 0;
+
 }
