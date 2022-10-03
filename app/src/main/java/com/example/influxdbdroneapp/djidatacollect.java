@@ -6,9 +6,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.dji.mapkit.lbs.provider.GPSLocationProvider;
+
+import java.util.Locale;
+
 import dji.common.error.DJIError;
+import dji.common.flightcontroller.FlightControllerState;
+import dji.common.remotecontroller.GPSData;
 import dji.keysdk.BatteryKey;
+import dji.keysdk.DJIKey;
 import dji.keysdk.KeyManager;
+import dji.keysdk.RemoteControllerKey;
 import dji.keysdk.callback.GetCallback;
 import dji.sdk.flightcontroller.FlightController;
 import dji.sdk.products.Aircraft;
@@ -17,6 +25,7 @@ import dji.sdk.sdkmanager.DJISDKManager;
 public class djidatacollect {
     static String drone_name = DJISDKManager.getInstance().getProduct().getModel().toString();
     static FlightController flightController = ((Aircraft) DJISDKManager.getInstance().getProduct()).getFlightController();
+    final static DJIKey GPSkey = RemoteControllerKey.create(RemoteControllerKey.GPS_DATA);
     final static BatteryKey Batt_perc = BatteryKey.create(BatteryKey.CHARGE_REMAINING_IN_PERCENT);
     final static BatteryKey Voltage = BatteryKey.create(BatteryKey.VOLTAGE);
     final static BatteryKey Current = BatteryKey.create(BatteryKey.CURRENT);
@@ -106,6 +115,17 @@ public class djidatacollect {
         });
         return(output[0]);
     }
+    public static double[] GPS_location(){
+
+        double output_latitude = flightController.getState().getAircraftLocation().getLatitude();
+        double output_longtitude = flightController.getState().getAircraftLocation().getLongitude();
+        double output_altitude = flightController.getState().getAircraftLocation().getAltitude();
+        double[] output_list;
+        output_list = new double[]{output_longtitude,output_latitude,output_altitude};
+        return(output_list);
+
+    }
+
     static Integer last_voltage = 0;
     static Integer last_current = 0;
     static Integer last_percent = 0;
