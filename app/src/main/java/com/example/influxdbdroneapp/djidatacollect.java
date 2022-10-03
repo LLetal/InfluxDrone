@@ -120,7 +120,9 @@ public class djidatacollect {
         double output_latitude = flightController.getState().getAircraftLocation().getLatitude();
         double output_longtitude = flightController.getState().getAircraftLocation().getLongitude();
         double output_altitude = flightController.getState().getAircraftLocation().getAltitude();
-        return([output_longtitude,output_latitude,output_altitude]);
+        double[] output_list;
+        output_list = new double[]{output_longtitude,output_latitude,output_altitude};
+        return(output_list);
 
     }
 
