@@ -49,5 +49,15 @@ public class influxdbclass {
         writeApi.writePoint(point);
     }
 
+    public static void pushdouble(WriteApiBlocking writeApi, String measurement, String tag, String tag2, String field, Double value) {
+
+
+        Point point = Point.measurement(measurement)
+                .addTag(tag, tag2)
+                .addField(field, value)
+                .time(Instant.now(), WritePrecision.MS);
+
+        writeApi.writePoint(point);
+    }
 
 }

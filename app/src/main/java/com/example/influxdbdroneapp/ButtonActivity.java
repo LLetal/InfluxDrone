@@ -1,5 +1,6 @@
 package com.example.influxdbdroneapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -9,17 +10,33 @@ import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.influxdb.client.InfluxDBClient;
 import com.influxdb.client.WriteApiBlocking;
 
 
-public class ButtonActivity extends AppCompatActivity {
+public class ButtonActivity extends AppCompatActivity implements OnMapReadyCallback {
     public volatile Boolean bolswitch = false;
     public static InfluxDBClient setup_client = null;
+    private GoogleMap mMap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
         setContentView(R.layout.activity_button);
+    }
+
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+
+        mMap = googleMap;
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
     }
 
     Runnable data_collection = () -> {
@@ -42,8 +59,12 @@ public class ButtonActivity extends AppCompatActivity {
             influxdbclass.pushint(writeApi, "Dji", djidatacollect.drone_name, "Battery_metrics", "Battery_percentage", djidatacollect.battery_percent(djidatacollect.last_percent));
             influxdbclass.pushint(writeApi, "Dji", djidatacollect.drone_name, "Battery_metrics", " Battery_current", djidatacollect.battery_current(djidatacollect.last_current));
             influxdbclass.pushint(writeApi, "Dji", djidatacollect.drone_name, "Battery_metrics", "Battery_voltage", djidatacollect.battery_voltage(djidatacollect.last_voltage));
+            influxdbclass.pushdouble(writeApi, "Dji", djidatacollect.drone_name,"Geo_metrics", "Longtitude", djidatacollect.GPS_location()[0]);
+            influxdbclass.pushdouble(writeApi, "Dji", djidatacollect.drone_name,"Geo_metrics", "Langtitude", djidatacollect.GPS_location()[1]);
+            influxdbclass.pushdouble(writeApi, "Dji", djidatacollect.drone_name,"Geo_metrics", "Altitude", djidatacollect.GPS_location()[2]);
         }
     };
+
     public int debug_fun(){
         return(0);
     }
@@ -61,9 +82,9 @@ public class ButtonActivity extends AppCompatActivity {
             influxdbclass.pushint(writeApi, "Dji", "Debug_drone", "Debug_cycle", "debug", debug_fun());
             influxdbclass.pushint(writeApi, "Dji", "Debug_drone", "Debug_cycle", "debug", debug_fun());
 
-
         }
     };
+
     @SuppressLint("SetTextI18n")
     public void OnClick_collect(View view) {
         Thread myThread = new Thread(data_collection);
@@ -79,6 +100,7 @@ public class ButtonActivity extends AppCompatActivity {
             bolswitch=false;
         }
     }
+
 
 
 }
