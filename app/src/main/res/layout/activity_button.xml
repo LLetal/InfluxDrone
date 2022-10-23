@@ -13,10 +13,10 @@
         android:layout_height="213dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainbutton"
-        app:layout_constraintVertical_bias="0.776"
+        app:layout_constraintVertical_bias="0.85"
         tools:context=".MapsActivity" />
 
     <Button
@@ -29,18 +29,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"
+        app:layout_constraintVertical_bias="0.315"
         tools:ignore="HardcodedText" />
 
     <TextView
-        android:id="@+id/dronename"
+        android:id="@+id/Latitudetext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Product_name"
-        app:layout_constraintBottom_toTopOf="@+id/mainbutton"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="48dp"
+        android:text="Latitude"
+        app:layout_constraintBottom_toTopOf="@+id/map"
+        app:layout_constraintEnd_toStartOf="@+id/mainbutton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.432"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintVertical_bias="0.935" />
+
+    <TextView
+        android:id="@+id/Longtitudetext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:text="Longtitude"
+        app:layout_constraintBottom_toTopOf="@+id/map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mainbutton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.935" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -115,6 +115,12 @@ public class djidatacollect {
         });
         return(output[0]);
     }
+    public static double latitude(){
+        return(flightController.getState().getAircraftLocation().getLatitude());
+    }
+    public static double longtitude(){
+        return(flightController.getState().getAircraftLocation().getLongitude());
+    }
     public static double[] GPS_location(){
 
         double output_latitude = flightController.getState().getAircraftLocation().getLatitude();
