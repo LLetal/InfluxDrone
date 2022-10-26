@@ -15,11 +15,15 @@ In the opposite situation your application will crash after clicking submit butt
 
 
 # Showcase
-To demonstrate functionality of my app I have recorded a short video of drone flight and pasted the measured data during that short flight. I have also made two dashboards, one of them in grafana and second one in influxdb, both of the current dashboards are inside of dashboard forlder. I have also added two sample datasets for them test too. Dataset matching the youtube video is named matching.csv, second dataset isnt matching video yet and is there.
+To demonstrate functionality of my app I have recorded a short video of drone flight and pasted the measured data during that short flight. I have also made two dashboards, one of them in grafana and second one in influxdb, both of the current dashboards are inside of showcase forlder.
 
 ![Dashboard grafana](https://github.com/LLetal/InfluxDrone/blob/main/images/dashboard.jpg)
 
 ![Dashboard Influxdb](https://github.com/LLetal/InfluxDrone/blob/visualization/images/Influx_dashboard.png)
-https://youtube.com/shorts/ePIWshUOIoY?feature=share
+[https://youtube.com/shorts/ePIWshUOIoY?feature=share](https://youtube.com/shorts/ePIWshUOIoY)
+
+# Datasets 
+To demonstrate function of my application I have pasted two datasets to showcase folder. First dataset is matching video pasted above and dashboard doesnt  display geometrics from this dataset, since when I was recording it, the geometrics collection wasn't working yet. On the other hand, second dataset does display all at the moment aviable collected metrics, but sadly doesnt have video of drone attached.
+
 # Data collection
 As mentioned above, data from drone is being sent to influxDB server, while the data extraction is turned on. To monitor the data I have implemented a grafana dashboard, which is aviliable inside of grafana folder. The data is saved automatically under meassurement with name of your drone device.
