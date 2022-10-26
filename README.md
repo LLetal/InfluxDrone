@@ -3,7 +3,7 @@ Simple android application for collection of telemetry information of DJI drones
 # Prerequisities
 To launch and use this application you have to own any product displayed on this site https://developer.dji.com/products/#!/mobile and android phone with at least android 8.
 # How to use
-First of all, you have to clone this repository and build it in the IDEA of your choice (I have used android studio). Once the application is built, turn on your drone and plug your phone into the RC controller. Once the app is launched the DJI SDK Authorization automatically starts. To successfully register the app you have to be connected to the internet and it sadly is impossible to continue further without a completed registration (app crashes). 
+First of all, you have to clone this repository and build it in the IDEA of your choice (I have used android studio). Dont forget to paste your google map API key(https://developers.google.com/maps/documentation/javascript/get-api-key), without it the newly added map widget wouldn't launch.Once the application is built, turn on your drone and plug your phone into the RC controller. Once the app is launched the DJI SDK Authorization automatically starts. To successfully register the app you have to be connected to the internet and it sadly is impossible to continue further without a completed registration (app crashes). 
 <p align="center">
 <img src="https://github.com/LLetal/InfluxDrone/blob/main/images/Mainactivity.jpg" alt="Registration completed" width="270"/>
 </p>
