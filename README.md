@@ -15,7 +15,7 @@ In the opposite situation your application will crash after clicking submit butt
 
 
 # Showcase
-To demonstrate functionality of my app I have recorded a short video of drone flight and pasted the measured data during that short flight. I have also made two dashboards, one of them in grafana and second one in influxdb, both of the dashboards are inside of dashboards forlder. I have also added two sample datasets for them test too. Dataset matching the youtube video is named matching.csv, second dataset isnt matching video yet and is there.
+To demonstrate functionality of my app I have recorded a short video of drone flight and pasted the measured data during that short flight. I have also made two dashboards, one of them in grafana and second one in influxdb, both of the current dashboards are inside of dashboard forlder. I have also added two sample datasets for them test too. Dataset matching the youtube video is named matching.csv, second dataset isnt matching video yet and is there.
 
 ![Dashboard grafana](https://github.com/LLetal/InfluxDrone/blob/main/images/dashboard.jpg)
 
