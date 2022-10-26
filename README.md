@@ -19,7 +19,7 @@ To demonstrate functionality of my app I have recorded a short video of drone fl
 
 ![Dashboard grafana](https://github.com/LLetal/InfluxDrone/blob/main/images/dashboard.jpg)
 
-![Dashboard Influxdb](https://github.com/LLetal/InfluxDrone/blob/main/images/influx_dashboard.png)
+![Dashboard Influxdb](https://github.com/LLetal/InfluxDrone/blob/visualization/images/Influx_dashboard.png)
 https://youtube.com/shorts/ePIWshUOIoY?feature=share
 # Data collection
 As mentioned above, data from drone is being sent to influxDB server, while the data extraction is turned on. To monitor the data I have implemented a grafana dashboard, which is aviliable inside of grafana folder. The data is saved automatically under meassurement with name of your drone device.
