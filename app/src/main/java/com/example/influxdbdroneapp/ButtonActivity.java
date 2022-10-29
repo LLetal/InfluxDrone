@@ -1,6 +1,5 @@
 package com.example.influxdbdroneapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -9,7 +8,6 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -21,11 +19,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.influxdb.client.InfluxDBClient;
 import com.influxdb.client.WriteApiBlocking;
 
+import java.util.Random;
+
 
 public class ButtonActivity extends AppCompatActivity implements OnMapReadyCallback{
     public volatile Boolean bolswitch = false;
     public static InfluxDBClient setup_client = null;
-
+    Random source_r = new Random();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,11 +48,6 @@ public class ButtonActivity extends AppCompatActivity implements OnMapReadyCallb
 
 
 
-
-
-
-
-
     Runnable data_collection = () -> {
         WriteApiBlocking writeApi = setup_client.getWriteApiBlocking();
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -60,7 +55,6 @@ public class ButtonActivity extends AppCompatActivity implements OnMapReadyCallb
         djidatacollect.last_percent = djidatacollect.battery_percent(0);
         djidatacollect.last_voltage = djidatacollect.battery_voltage(0);
         djidatacollect.last_current = djidatacollect.battery_current(0);
-        double coordarray[];
         while (bolswitch){
             try {
                 Thread.sleep(1000);
@@ -76,12 +70,31 @@ public class ButtonActivity extends AppCompatActivity implements OnMapReadyCallb
             influxdbclass.pushint(writeApi, "Dji", djidatacollect.drone_name, "Battery_metrics", " Battery_current", djidatacollect.battery_current(djidatacollect.last_current));
             influxdbclass.pushint(writeApi, "Dji", djidatacollect.drone_name, "Battery_metrics", "Battery_voltage", djidatacollect.battery_voltage(djidatacollect.last_voltage));
             influxdbclass.pushdouble(writeApi, "Dji", djidatacollect.drone_name,"Geo_metrics", "Longtitude", djidatacollect.longtitude());
-            influxdbclass.pushdouble(writeApi, "Dji", djidatacollect.drone_name,"Geo_metrics", "Langtitude", djidatacollect.latitude());
+            influxdbclass.pushdouble(writeApi, "Dji", djidatacollect.drone_name,"Geo_metrics", "Latitude", djidatacollect.latitude());
             influxdbclass.pushdouble(writeApi, "Dji", djidatacollect.drone_name,"Geo_metrics", "Altitude", djidatacollect.GPS_location()[2]);
+            GMapsclass.latituden = djidatacollect.latitude();
+            GMapsclass.longtituden = djidatacollect.longtitude();
+            UIupdate();
             GMapsclass.old_longtitude = djidatacollect.longtitude();
             GMapsclass.old_latitude = djidatacollect.latitude();
         }
     };
+    protected void UIupdate() {
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                GMapsclass.setUserLocationMarker(GMapsclass.latituden, GMapsclass.longtituden);
+            }
+        });
+
+    }
+    protected double Random_latitude(double range_min, double range_max){
+        return(range_min + (range_max-range_min)*source_r.nextDouble());
+    }
+    protected double Random_longtitude(double range_min, double range_max){
+        return(range_min + (range_max-range_min)*source_r.nextDouble());
+    }
 
     public int debug_fun(){
         return(0);
@@ -99,23 +112,13 @@ public class ButtonActivity extends AppCompatActivity implements OnMapReadyCallb
             influxdbclass.pushint(writeApi, "Dji", "Debug_drone", "Debug_cycle", "debug", debug_fun());
             influxdbclass.pushint(writeApi, "Dji", "Debug_drone", "Debug_cycle", "debug", debug_fun());
             influxdbclass.pushint(writeApi, "Dji", "Debug_drone", "Debug_cycle", "debug", debug_fun());
-            GMapsclass.latituden = 0;
-            GMapsclass.longtituden = 0;
-
+            GMapsclass.latituden = Random_latitude(49.4762831, 17.4361861);
+            GMapsclass.longtituden = Random_longtitude(49.4712217, 17.4515069);
+            UIupdate();
         }
     };
-    public void map_loop() {
-        while (bolswitch) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            GMapsclass.setUserLocationMarker(GMapsclass.latituden, GMapsclass.longtituden);
 
-        }
 
-    }
 
     @SuppressLint("SetTextI18n")
     public void OnClick_collect(View view) {
