@@ -221,6 +221,7 @@ public class MainActivity extends AppCompatActivity {
         WriteApiBlocking writeApi =  ButtonActivity.setup_client.getWriteApiBlocking();
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
         influxdbclass.pushint(writeApi, "Dji", "debug", "Debug", "debug_Start", 0);
         startActivity(data_col);
     }
