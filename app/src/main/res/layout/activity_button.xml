@@ -6,39 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".ButtonActivity">
 
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="332dp"
+        android:layout_height="213dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainbutton"
+        app:layout_constraintVertical_bias="0.85"
+        tools:context=".MapsActivity" />
+
     <Button
         android:id="@+id/mainbutton"
         android:layout_width="159dp"
         android:layout_height="98dp"
-        android:text="Start data collection"
         android:onClick="OnClick_collect"
+        android:text="Start data collection"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.315"
         tools:ignore="HardcodedText" />
 
     <TextView
-        android:id="@+id/Errortext"
+        android:id="@+id/Latitudetext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Errortext"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainbutton"
-        tools:ignore="HardcodedText" />
-
-    <TextView
-        android:id="@+id/dronename"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Product_name"
-        app:layout_constraintBottom_toTopOf="@+id/mainbutton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        android:layout_marginStart="48dp"
+        android:text="Latitude"
+        app:layout_constraintBottom_toTopOf="@+id/map"
+        app:layout_constraintEnd_toStartOf="@+id/mainbutton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.634"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintVertical_bias="0.935" />
+
+    <TextView
+        android:id="@+id/Longtitudetext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:text="Longtitude"
+        app:layout_constraintBottom_toTopOf="@+id/map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mainbutton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.935" />
 </androidx.constraintlayout.widget.ConstraintLayout>
