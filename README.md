@@ -27,3 +27,5 @@ To demonstrate function of my application I have pasted two datasets to showcase
 
 # Data collection
 As mentioned above, data from drone is being sent to influxDB server, while the data extraction is turned on. To monitor the data I have implemented a grafana dashboard, which is aviliable inside of grafana folder. The data is saved automatically under meassurement with name of your drone device.
+#TODO
+Add camera function, flight planning and object detection 
