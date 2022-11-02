@@ -17,7 +17,7 @@ In the opposite situation your application will crash after clicking submit butt
 # Showcase
 To demonstrate functionality of my app I have recorded a short video of drone flight and pasted the measured data during that short flight. I have also made two dashboards, one of them in grafana and second one in influxdb, both of the current dashboards are inside of showcase forlder.
 
-![Dashboard grafana](https://github.com/LLetal/InfluxDrone/blob/main/images/dashboard.jpg)
+![Dashboard grafana](https://github.com/LLetal/InfluxDrone/blob/main/images/grafana_dashboard.jpg)
 
 ![Dashboard Influxdb](https://github.com/LLetal/InfluxDrone/blob/visualization/images/Influx_dashboard.png)
 [https://youtube.com/shorts/ePIWshUOIoY?feature=share](https://youtube.com/shorts/ePIWshUOIoY)
