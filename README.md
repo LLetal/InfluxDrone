@@ -8,13 +8,14 @@ First of all, you have to clone this repository and build it in the IDEA of your
 <img src="https://github.com/LLetal/InfluxDrone/blob/Basic-data/images/Mainactivity.jpg" alt="drawing" width="270"/>
 </p>
 After successful authorization, you can just fill in the organization, bucket, API token, and finally URL of desired InfluxDB server and click submit button. After clicking the button the app will send test data to your InfluxDB server to confirm, that the submitted information is valid. If you have filled in valid information you should see this:
-![Registration complete](https://github.com/LLetal/InfluxDrone/blob/Basic-data/images/secondactivity.jpg)
+<p align="center">
+<img src="https://github.com/LLetal/InfluxDrone/blob/Basic-data/images/secondactivity.jpg" alt="drawing" width="270"/>
+</p>
+
 In the opposite situation your application will crash after clicking submit button, which means that you have probably submitted a wrong information or desired server is not reachable. Once you successfully reach the "click for data" button you can just manually take off with your drone (move both joysticks to opposite corners) and click the button once you want to start data collection.
 # Showcase
 To demonstrate functionality of my app I have recorded a short video of drone flight and pasted the measured data during that short flight. The data is avaliable inside of grafana folder alongside with grafana dashboard json. To access it simply upload it to yours InfluxDB server.
-<p align="center">
-<img src="https://github.com/LLetal/InfluxDrone/blob/main/images/dashboard.jpg" alt="drawing" width="270"/>
-</p>
+
 https://youtube.com/shorts/ePIWshUOIoY?feature=share
 # Data collection
 As mentioned above, data from drone is being sent to influxDB server, while the data extraction is turned on. To monitor the data I have implemented a grafana dashboard, which is aviliable inside of grafana folder. The data is saved automatically under meassurement with name of your drone device.
